@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f4efe4" />
+  <meta name="description" content="Pizarra Políglota: practica diez idiomas con escritura, voz, pronunciación y progreso." />
+  <title>Pizarra Políglota — práctica de idiomas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Navegación principal">
+      <div class="brand-mark" aria-label="Pizarra Políglota">
+        <span class="brand-dot"></span>
+        <span>Pizarra<br /><em>/ Políglota</em></span>
+      </div>
+      <div class="sidebar-label">Tu mesa de práctica</div>
+      <nav class="main-nav" id="main-nav">
+        <button class="nav-item active" data-view="board" type="button"><span class="nav-icon">▦</span><span>Pizarra</span><span class="nav-index">01</span></button>
+        <button class="nav-item" data-view="write" type="button"><span class="nav-icon">✎</span><span>Escribir</span><span class="nav-index">02</span></button>
+        <button class="nav-item" data-view="voice" type="button"><span class="nav-icon">◉</span><span>Voz</span><span class="nav-index">03</span></button>
+        <button class="nav-item" data-view="progress" type="button"><span class="nav-icon">↗</span><span>Progreso</span><span class="nav-index">04</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="mini-streak"><span class="flame">✦</span><div><strong id="sidebar-streak">0 días</strong><small>racha actual</small></div></div>
+        <p class="sidebar-tip">Una frase al día. Diez puertas abiertas.</p>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="breadcrumb"><span>RUTA DE HOY</span><i></i><strong id="top-language">Inglés</strong></div>
+        <div class="top-actions">
+          <button class="icon-button" id="reset-progress" type="button" title="Reiniciar progreso" aria-label="Reiniciar progreso">↺</button>
+          <div class="avatar" aria-label="Perfil de estudiante">MP</div>
+        </div>
+      </header>
+
+      <section class="view active" id="view-board" aria-labelledby="board-title">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <div class="eyebrow"><span class="eyebrow-line"></span> Sesión <span id="session-number">01</span> / 10</div>
+            <h1 id="board-title">Haz que cada frase<br /><span>te pertenezca.</span></h1>
+            <p class="hero-intro">Escucha, escribe y pronuncia una idea útil. El idioma se queda cuando pasa por tu propia voz.</p>
+            <div class="hero-actions">
+              <button class="primary-button" id="start-session" type="button">Empezar sesión <span>→</span></button>
+              <button class="text-button" data-view-target="voice" type="button"><span class="play-mark">▶</span> Escuchar la frase</button>
+            </div>
+          </div>
+          <div class="hero-note">
+            <div class="tape">NIVEL ACTUAL</div>
+            <div class="note-content">
+              <div class="note-language"><span class="language-flag" id="hero-flag">EN</span><span id="hero-language">Inglés</span><button class="tiny-chevron" id="open-language-picker" type="button" aria-label="Cambiar idioma">⌄</button></div>
+              <label for="level-select">Tu punto de partida</label>
+              <select id="level-select" class="level-select">
+                <option value="beginner">A1 · Primeras palabras</option>
+                <option value="elementary">A2 · Conversación simple</option>
+                <option value="intermediate">B1 · Ideas completas</option>
+                <option value="upper">B2 · Más naturalidad</option>
+              </select>
+              <div class="note-rule"></div>
+              <div class="note-footer"><span>Tiempo sugerido</span><strong>12 min</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-heading"><div><span class="section-kicker">EL TABLERO</span><h2>Tu ruta, en tres movimientos.</h2></div><button class="outline-button" data-view-target="progress" type="button">Ver mi avance <span>↗</span></button></div>
+        <div class="practice-grid">
+          <article class="practice-card card-listen" data-step="listen">
+            <div class="card-top"><span class="step-number">01</span><span class="status-pill">Escucha</span></div>
+            <div class="card-icon sound-icon">)))</div>
+            <h3>Primero, el oído.</h3>
+            <p>Escucha el ritmo antes de mirar cada palabra.</p>
+            <button class="card-link" id="listen-card-button" type="button">Reproducir audio <span>→</span></button>
+          </article>
+          <article class="practice-card card-write" data-step="write">
+            <div class="card-top"><span class="step-number">02</span><span class="status-pill">Escribe</span></div>
+            <div class="card-icon pen-icon">✎</div>
+            <h3>Después, tu versión.</h3>
+            <p>Escribe la idea sin perseguir la perfección.</p>
+            <button class="card-link" data-view-target="write" type="button">Ir a escribir <span>→</span></button>
+          </article>
+          <article class="practice-card card-speak" data-step="speak">
+            <div class="card-top"><span class="step-number">03</span><span class="status-pill">Pronuncia</span></div>
+            <div class="card-icon voice-icon">◖</div>
+            <h3>Finalmente, tu voz.</h3>
+            <p>Grábate y compárate con el modelo, sin juicio.</p>
+            <button class="card-link" data-view-target="voice" type="button">Practicar voz <span>→</span></button>
+          </article>
+        </div>
+
+        <div class="phrase-strip">
+          <div class="phrase-label"><span>FRASE DE HOY</span><strong id="phrase-category">Presentarte</strong></div>
+          <div class="phrase-main"><span id="board-phrase">My name is ...</span><button class="round-play" id="board-play" type="button" aria-label="Escuchar frase">▶</button></div>
+          <div class="phrase-translation"><span>en español</span><strong id="board-translation">Me llamo ...</strong></div>
+        </div>
+      </section>
+
+      <section class="view" id="view-write" aria-labelledby="write-title" hidden>
+        <div class="view-heading"><div><span class="eyebrow"><span class="eyebrow-line"></span> MOVIMIENTO 02</span><h2 id="write-title">Escribe la frase<br /><span>a tu manera.</span></h2><p>Usa las pistas y recibe una corrección inmediata sobre lo esencial: coincidencia, ortografía y puntuación.</p></div><div class="view-stamp">CORRECCIÓN<br /><strong>LOCAL</strong></div></div>
+        <div class="writing-layout">
+          <div class="prompt-card">
+            <div class="prompt-meta"><span id="write-language">Inglés</span><span>•</span><span id="write-level">A1</span></div>
+            <p class="prompt-label">Traduce al idioma objetivo:</p>
+            <div class="prompt-native" id="write-prompt">Me llamo ...</div>
+            <button class="listen-prompt" id="write-play" type="button"><span>▶</span> Escuchar modelo</button>
+            <div class="hint-box"><span>PISTA</span><p id="write-hint">Presentación básica · usa “my name is”.</p></div>
+          </div>
+          <div class="editor-card">
+            <div class="editor-head"><span>Tu respuesta</span><span class="editor-language" id="editor-language">EN · Inglés</span></div>
+            <textarea id="answer-input" rows="6" spellcheck="true" autocomplete="off" placeholder="Escribe aquí la frase en el idioma objetivo..."></textarea>
+            <div class="editor-footer"><span id="character-count">0 caracteres</span><button class="primary-button compact" id="check-answer" type="button">Corregir mi texto <span>→</span></button></div>
+            <div class="feedback" id="writing-feedback" role="status" aria-live="polite" hidden></div>
+          </div>
+        </div>
+        <div class="correction-note"><span class="note-symbol">i</span><p><strong>¿Qué se corrige aquí?</strong> La pizarra compara tu frase con el modelo, normaliza signos y te da pistas básicas. Para una revisión avanzada de gramática necesitarías conectar un corrector de IA con backend seguro.</p></div>
+      </section>
+
+      <section class="view" id="view-voice" aria-labelledby="voice-title" hidden>
+        <div class="view-heading voice-heading"><div><span class="eyebrow"><span class="eyebrow-line"></span> MOVIMIENTO 03</span><h2 id="voice-title">Dale aire<br /><span>al idioma.</span></h2><p>Escucha el modelo, graba tu intento y observa la transcripción si tu navegador lo permite.</p></div><div class="voice-orbit"><span class="orbit-dot"></span><span>VOICE<br />LAB</span></div></div>
+        <div class="voice-layout">
+          <div class="voice-model-card">
+            <div class="wave-label"><span class="live-dot"></span> MODELO DE PRONUNCIACIÓN</div>
+            <div class="model-phrase" id="voice-phrase">My name is ...</div>
+            <div class="model-translation" id="voice-translation">Me llamo ...</div>
+            <div class="voice-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <button class="primary-button" id="voice-model-play" type="button">Escuchar pronunciación <span>▶</span></button>
+          </div>
+          <div class="record-card">
+            <div class="record-head"><span class="step-number">TU TURNO</span><span class="record-support" id="recognition-support">Comprobando micrófono…</span></div>
+            <button class="record-button" id="record-button" type="button" aria-label="Iniciar grabación"><span class="mic-symbol">●</span><span id="record-label">Toca para hablar</span></button>
+            <div class="record-status" id="record-status">Pulsa y repite la frase con calma.</div>
+            <div class="transcript-box"><span>TRANSCRIPCIÓN</span><p id="transcript">Tu transcripción aparecerá aquí...</p></div>
+          </div>
+        </div>
+        <div class="voice-tip"><span>☆</span><p><strong>Truco de profesor:</strong> no intentes sonar “perfecto”. Repite una vez lento, una vez natural y una vez sonriendo. La melodía también comunica.</p></div>
+      </section>
+
+      <section class="view" id="view-progress" aria-labelledby="progress-title" hidden>
+        <div class="view-heading progress-heading"><div><span class="eyebrow"><span class="eyebrow-line"></span> TU CUADERNO</span><h2 id="progress-title">Pequeñas pruebas,<br /><span>avance real.</span></h2><p>Tu progreso vive en este dispositivo. Nadie te califica: solo tú decides la próxima repetición.</p></div><div class="progress-total"><strong id="progress-total-number">0</strong><span>frases<br />completadas</span></div></div>
+        <div class="progress-overview"><div class="stat-card stat-main"><span>RACHA ACTUAL</span><strong id="progress-streak">0</strong><em>días seguidos</em><div class="streak-dots" id="streak-dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div><div class="stat-card"><span>TIEMPO DE HOY</span><strong id="progress-time">0<small> min</small></strong><em>de 12 min sugeridos</em><div class="mini-progress"><i id="time-bar"></i></div></div><div class="stat-card"><span>IDIOMA ACTIVO</span><strong class="stat-language" id="progress-language">Inglés</strong><em id="progress-level-label">A1 · Primeras palabras</em><button class="small-link" id="progress-change-language" type="button">Cambiar idioma →</button></div></div>
+        <div class="language-progress-section"><div class="section-heading"><div><span class="section-kicker">DIEZ PUERTAS</span><h2>Tu mapa de idiomas.</h2></div><span class="map-caption">elige uno para cambiar de ruta</span></div><div class="language-list" id="language-list"></div></div>
+      </section>
+
+      <footer class="page-footer"><span>Hecho para repetir, no para rendirse.</span><span>pizarra / políglota <b>•</b> 2026</span></footer>
+    </main>
+  </div>
+
+  <div class="language-drawer" id="language-drawer" hidden>
+    <div class="drawer-backdrop" data-close-drawer></div>
+    <div class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+      <button class="drawer-close" data-close-drawer type="button" aria-label="Cerrar selector">×</button>
+      <span class="section-kicker">CAMBIAR DE RUTA</span><h2 id="drawer-title">¿Qué idioma<br /><span>abre hoy?</span></h2>
+      <div class="drawer-languages" id="drawer-languages"></div>
+    </div>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
